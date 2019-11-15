@@ -1,0 +1,19 @@
+{
+  "name": "restapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "koa": "^2.11.0",
+    "mongoose": "^5.7.11",
+    "ramda": "^0.26.1",
+    "uniqid": "^5.1.0"
+  }
+}
