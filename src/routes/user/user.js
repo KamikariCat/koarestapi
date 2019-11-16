@@ -2,7 +2,7 @@ const { createUser, findUserByLogin } = require('./../../db/services/user');
 
 module.exports.registerUser = router => {
     router.post('/register', async (ctx, next) => {
-        console.log(ctx.request.body);
+        //console.log(ctx.request.body);
         if (
             !ctx.request.body.hasOwnProperty('login') ||
             !ctx.request.body.hasOwnProperty('password') ||
@@ -17,11 +17,10 @@ module.exports.registerUser = router => {
         const user = await findUserByLogin(login);
 
         if (!user) {
-            const createdUser = createUser(login, password);
-            if (!createdUser) return ctx.throw(400).then().catch(e => e);
-            ctx.body = createdUser
+            const created = await createUser(login, password);
+            console.log(created);
+            ctx.body = created;
         }
-
         next();
     })
 };
