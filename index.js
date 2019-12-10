@@ -20,8 +20,8 @@ app.use(cors());
 Routes.call(app);
 
 https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/sharepic.pro/privkey.pem', 'utf8'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/sharepic.pro/privkey.pem', 'utf8')
+      key: fs.readFileSync(path.resolve(process.cwd(), '/etc/letsencrypt/live/sharepic.pro/privkey.pem'), 'utf8').toString(),
+      cert: fs.readFileSync(path.resolve(process.cwd(), '/etc/letsencrypt/live/sharepic.pro/privkey.pem'), 'utf8').toString(),
 }, app.callback()).listen(4000);
 
 //app.listen(4000);
