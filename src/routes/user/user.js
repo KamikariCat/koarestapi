@@ -20,7 +20,7 @@ module.exports.registerUser = router => {
 
         if (!user) {
             const created = await createUser(login, password);
-            ctx.body = {token : await created.token};
+            ctx.body = {token : await created.token, login : await created.login};
             ctx.status = 201;
         } else {
             ctx.status = 400;
