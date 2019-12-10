@@ -2,6 +2,7 @@
 
 const Koa = require('koa');
 const https = require('https');
+const fs = require('fs');
 
 const app = new Koa();
 
