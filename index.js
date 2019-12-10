@@ -1,6 +1,7 @@
 'use strict';
 
 const Koa = require('koa');
+const https = require('https');
 
 const app = new Koa();
 
@@ -17,4 +18,9 @@ app.use(bodyParser());
 app.use(cors());
 Routes.call(app);
 
-app.listen(4000);
+https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/sharepic.pro/privkey.pem', 'utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/sharepic.pro/privkey.pem', 'utf8')
+}, app.callback()).listen(4000);
+
+//app.listen(4000);
