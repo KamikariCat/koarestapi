@@ -43,3 +43,12 @@ module.exports.isUserTokenExists = async (login, token) => {
 
     return founded ? token : false;
 };
+
+module.exports.clearUserToken = async (login, token) => {
+    const founded = await UserModel.findOneAndUpdate({login, token}, {token: uniqid()}, err => {
+        if (err) return console.log(`Cannot find user "${login}"`);
+    });
+    if (!founded) return false;
+
+    return founded ? token : false;
+};
