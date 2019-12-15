@@ -1,0 +1,1 @@
+module.exports.getAllRoles = router => router.get('/role/all', ctx => ctx.body = 'fuck you nigga');
