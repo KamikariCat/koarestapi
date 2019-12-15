@@ -18,6 +18,12 @@ module.exports.findUserByLogin = async (login) => {
     });
 };
 
+module.exports.findUserById = async (id) => {
+    return await UserModel.findById(id, err => {
+        if (err) return console.log(`Cannot find user "${id}"`);
+    });
+};
+
 module.exports.loginUser = async (login, password) => {
     const founded = await UserModel.findOne({login}, err => {
         if (err) return console.log(`Cannot find user "${login}"`);

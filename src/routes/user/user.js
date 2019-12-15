@@ -1,4 +1,4 @@
-const { createUser, findUserByLogin, loginUser, updateUserToken, isUserTokenExists, clearUserToken } = require('./../../db/services/user');
+const { createUser, findUserByLogin, findUserById, loginUser, updateUserToken, isUserTokenExists, clearUserToken } = require('./../../db/services/user');
 
 module.exports.registerUser = router => {
     router.post('/register', async (ctx, next) => {
@@ -110,12 +110,33 @@ module.exports.logOutUser = router => {
     })
 };
 
-module.exports.getUserInfo = router => {
-    router.get('/user/:login', async (ctx, next) => {
-        const user = await findUserByLogin(ctx.params.login);
+module.exports.getCurrentUserInfo = router => {
+    router.get('/user', async (ctx, next) => {
+        if (
+            !ctx.request.headers.hasOwnProperty('login') ||
+            !ctx.request.headers.hasOwnProperty('token')
+        ) {
+            ctx.ststus = 401;
+            ctx.body = 'Token or login was not exists';
+            return await next();
+        }
+        const user = await findUserByLogin(ctx.request.headers.login);
 
         if (!user) return ctx.status = 400;
 
         ctx.body = {user}
+    })
+};
+
+module.exports.getUser = router => {
+    router.get('/user/:id', async (ctx, next) => {
+
+        const user = await findUserById(ctx.params.id);
+
+        if (!user) return ctx.status = 400;
+
+        ctx.body = {user};
+
+        next();
     })
 };
