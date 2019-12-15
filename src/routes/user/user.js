@@ -112,6 +112,10 @@ module.exports.logOutUser = router => {
 
 module.exports.getUserInfo = router => {
     router.get('/user/:login', async (ctx, next) => {
-        console.log(!!ctx.params)
+        const user = await findUserByLogin(ctx.params.login);
+
+        if (!user) return ctx.status = 400;
+
+        ctx.body = {user}
     })
 };
