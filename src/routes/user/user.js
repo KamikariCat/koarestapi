@@ -109,3 +109,9 @@ module.exports.logOutUser = router => {
         next();
     })
 };
+
+module.exports.getUserInfo = router => {
+    router.get('/user/:login', async (ctx, next) => {
+        console.log(ctx.request)
+    })
+};
