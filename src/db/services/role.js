@@ -1,6 +1,6 @@
 const RoleModel = require('./../models/role');
 
-module.exports.getAllRoles = async () => {
+module.exports.allRoles = async () => {
     let roles = undefined;
     await RoleModel.find()
         .then(gotRoles => {
