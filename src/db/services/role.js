@@ -6,6 +6,5 @@ module.exports.allRoles = async () => {
         .then(gotRoles => {
             return roles = gotRoles;
         });
-    console.log(roles);
-    return created;
+    return roles;
 };
