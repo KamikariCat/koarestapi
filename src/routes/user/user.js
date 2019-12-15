@@ -135,7 +135,7 @@ module.exports.getUser = router => {
 
         if (!user) return ctx.status = 400;
 
-        ctx.body = {user};
+        ctx.body = user;
 
         next();
     })
