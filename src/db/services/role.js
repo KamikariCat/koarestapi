@@ -8,3 +8,9 @@ module.exports.allRoles = async () => {
         });
     return roles;
 };
+
+module.exports.getRoleById = async (id) => {
+    return await RoleModel.findById(id, err => {
+        if (err) return console.log(`Cannot find user "${id}"`);
+    });
+};
