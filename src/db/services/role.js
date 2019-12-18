@@ -10,6 +10,7 @@ module.exports.allRoles = async () => {
 };
 
 module.exports.getRoleById = async (id) => {
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) return;
     return await RoleModel.findById(id, err => {
         if (err) return console.log(`Cannot find user "${id}"`);
     });
